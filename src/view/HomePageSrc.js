@@ -17,6 +17,21 @@ class HomePageSrc extends React.Component {
         masakan: 'Grill, Japannesse',
         jenisTempat: 'Restaurant',
         rating: '5.0',
+        booked: 1000,
+        points: [
+          {
+            time: '09:00-12:00',
+            discount: 50
+          },
+          {
+            time: '12:00-16:30',
+            discount: 10
+          },
+          {
+            time: '16:30-22:00',
+            discount: 25
+          }
+        ]
       },
       {
         name: 'Hanamasa',
@@ -26,6 +41,21 @@ class HomePageSrc extends React.Component {
         masakan: 'Grill, Japannesse',
         jenisTempat: 'Work',
         rating: '4.5',
+        booked: 1001,
+        points: [
+          {
+            time: '09:00-12:00',
+            discount: 20
+          },
+          {
+            time: '12:00-16:30',
+            discount: 30
+          },
+          {
+            time: '16:30-22:00',
+            discount: 50
+          }
+        ]
       },
     ],
     populerPlace: [
@@ -37,6 +67,21 @@ class HomePageSrc extends React.Component {
         jenis: 'Futsal',
         jenisTempat: 'Sports',
         rating: '4.5',
+        booked: 1002,
+        points: [
+          {
+            time: '09:00-12:00',
+            discount: 10
+          },
+          {
+            time: '12:00-16:30',
+            discount: 40
+          },
+          {
+            time: '16:30-22:00',
+            discount: 50
+          }
+        ]
       },
       {
         name: 'Salon Kecantikan ',
@@ -46,6 +91,21 @@ class HomePageSrc extends React.Component {
         jenis: 'Salon',
         jenisTempat: 'Beauty',
         rating: '5.0',
+        booked: 1003,
+        points: [
+          {
+            time: '09:00-12:00',
+            discount: 5
+          },
+          {
+            time: '12:00-16:30',
+            discount: 30
+          },
+          {
+            time: '16:30-22:00',
+            discount: 60
+          }
+        ]
       },
     ]
   }

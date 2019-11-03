@@ -15,6 +15,7 @@ class Food extends React.Component {
         let jenisTempat = '#FFB139'
         if (this.props.item.jenisTempat == 'Restaurant') jenisTempat = '#FFB139'
         if (this.props.item.jenisTempat == 'Work') jenisTempat = '#BD60E3'
+
         return (
             <View style={{ backgroundColor: '#FFF', borderRadius: 10, borderColor: '#868686', borderWidth: 0.5, width: WIDTH * 0.60, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, shadowRadius: 10, marginRight: 10 }}>
                 <TouchableOpacity onPress={() => this.props._actionDetail(this.props.item)}>
@@ -41,12 +42,36 @@ class Food extends React.Component {
                         <Text style={{ fontSize: 12, marginTop: 5, color: '#868686' }}>{this.props.item.masakan}</Text>
                     </View>
                 </TouchableOpacity >
+                <View style={{ justifyContent: 'space-between', flexDirection: 'row', paddingLeft: 10, paddingRight: 10 }}>
+                    {
+                        this.props.item.points && this.props.item.points.map((data, i) => {
+                            let size = null
+                            if (data.discount > 0 && data.discount <= 20) {
+                                size = 10
+                            } else if (data.discount > 20 && data.discount < 50) {
+                                size = 13
+                            } else {
+                                size = 16
+                            }
+                            return <View key={i} style={{ flexDirection: 'column', alignItems: 'center' }}>
+                                <Text bold style={{ fontSize: size, color: '#000', textAlign: 'center' }}>{data.discount + '%'}</Text>
+                                <Icon type="FontAwesome" name="globe" style={{ color: '#6554C0', fontSize: size }} />
+                                <Text style={{ fontSize: 10, color: '#000', textAlign: 'center' }}>{data.time}</Text>
+                            </View>
+                        })
+                    }
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', paddingTop: 5, paddingBottom: 5 }}>
+                    <Text style={{ fontSize: 12, marginTop: 5, color: '#000', textAlign: 'center' }}>{'Booked '}</Text>
+                    <Text style={{ fontSize: 12, marginTop: 5, color: '#000', textAlign: 'center', fontWeight: 'bold' }}>{this.props.item.booked}</Text>
+                    <Text style={{ fontSize: 12, marginTop: 5, color: '#000', textAlign: 'center' }}>{' times since yesterday'}</Text>
+                </View>
                 <TouchableOpacity onPress={() => this.props._actionBookNow(this.props.item)}>
                     <View style={{ paddingBottom: 10, paddingTop: 10, borderTopColor: '#868686', borderTopWidth: 0.5 }}>
                         <Text style={{ color: '#FF794A', fontWeight: 'bold', textAlign: 'center' }}>{'BOOK NOW'}</Text>
                     </View>
                 </TouchableOpacity>
-            </View>
+            </View >
         )
     }
 }
