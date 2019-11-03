@@ -5,22 +5,22 @@ import { Dimensions, Image, TouchableOpacity } from 'react-native';
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
-class Food extends React.Component {
+class Place extends React.Component {
 
     render() {
-        let colorRating = '#03955E'
+        let colorRating = null
         if (this.props.item.rating == '5.0') colorRating = '#03955E'
         if (this.props.item.rating == '4.5') colorRating = '#02CD7C'
 
-        let jenisTempat = '#FFB139'
-        if (this.props.item.jenisTempat == 'Restaurant') jenisTempat = '#FFB139'
-        if (this.props.item.jenisTempat == 'Work') jenisTempat = '#BD60E3'
+        let jenisTempat = null
+        if (this.props.item.jenisTempat == 'Sports') jenisTempat = '#02DFCB'
+        if (this.props.item.jenisTempat == 'Beauty') jenisTempat = '#FF90F4'
         return (
-            <View style={{ backgroundColor: '#FFF', borderRadius: 10, borderColor: '#868686', borderWidth: 0.5, width: WIDTH * 0.60, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, shadowRadius: 10, marginRight: 10 }}>
+            <View style={{ backgroundColor: '#FFF', borderRadius: 10, borderColor: '#868686', borderWidth: 0.5, width: WIDTH * 0.52, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, shadowRadius: 10, marginRight: 10 }}>
                 <TouchableOpacity onPress={() => this.props._actionDetail(this.props.item)}>
                     <View horizontalRow style={{ flexDirection: 'row' }}>
                         {this.props.item.image && <View style={{ flex: 1, borderTopLeftRadius: 10, borderTopRightRadius: 10, overflow: 'hidden' }}>
-                            <View style={{ alignItems: 'center', justifyContent: 'center', height: 150, width: WIDTH * 0.60, marginTop: 0 }}>
+                            <View style={{ alignItems: 'center', justifyContent: 'center', height: 150, width: WIDTH * 0.52, marginTop: 0 }}>
                                 <Image source={{ uri: this.props.item.image }} style={{ flex: 1, alignSelf: 'stretch', height: undefined, width: undefined, resizeMode: "cover" }} />
                             </View>
                             <View style={{ position: 'absolute', top: 10, left: 10, borderRadius: 20, paddingTop: 5, paddingBottom: 5, paddingLeft: 12, paddingRight: 12, backgroundColor: colorRating, flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center', alignItems: 'center' }}>
@@ -38,7 +38,7 @@ class Food extends React.Component {
                     <View style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 5 }}>
                         <Text style={{ fontSize: 17, fontWeight: 'bold', marginTop: 5, color: '#000000' }}>{this.props.item.name}</Text>
                         <Text style={{ fontSize: 14, marginTop: 5, color: '#9798A0' }}>{this.props.item.location + ', ' + this.props.item.locationKabupaten}</Text>
-                        <Text style={{ fontSize: 12, marginTop: 5, color: '#868686' }}>{this.props.item.masakan}</Text>
+                        <Text style={{ fontSize: 12, marginTop: 5, color: '#868686' }}>{this.props.item.jenis}</Text>
                     </View>
                 </TouchableOpacity >
                 <TouchableOpacity onPress={() => this.props._actionBookNow(this.props.item)}>
@@ -51,4 +51,4 @@ class Food extends React.Component {
     }
 }
 
-export default Food;
+export default Place;
