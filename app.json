@@ -1,5 +1,10 @@
 {
   "name": "tempat",
   "displayName": "tempat",
-  "appUrl": "https://danielmanullang.com"
+  "apiUrl": "http://snorlax.tempat.com/",
+  "danielmanullang": "https://danielmanullang.com/",
+  "imageUrl": "https://tempatdotcom.s3-ap-southeast-1.amazonaws.com/",
+  "grant_type": "client_credentials",
+  "client_id": "0vCQowPnun8UHLmIeoWhr2Cs17xVcY34loiA8Kd6",
+  "client_secret": "oRXrdH4jdfRS4rZ5PrfpwwQ549EYpSS47r0xRt9X75eq4zcrd9uUOYU2JvMiur4blUzgTII3nxjvK49HIOfqF58xweEuWdkHDHPTF8KtH6V2bIdY4Ss4iq6440svbzUS"
 }

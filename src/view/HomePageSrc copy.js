@@ -4,12 +4,60 @@ import { ScrollView, TouchableOpacity } from 'react-native';
 import Food from './../components/Item/Food';
 import Place from './../components/Item/Place';
 import Toast from './../components/Toast';
-import { apiCall, getAsyncStoreLoad } from './../redux/actions/commonAction';
-import endPoint from './../redux/service/endPoint';
 
 class HomePageSrc extends React.Component {
   static navigationOptions = { header: null }
   state = {
+    dealsOfTheDay: [
+      {
+        name: 'Gyukaku Buffet',
+        image: 'https://b.zmtcdn.com/data/pictures/5/18266425/5bdee9f92897a61a1f6acb4eee023771.jpg',
+        location: 'Gandaria City',
+        locationKabupaten: 'Jakarta Selatan',
+        masakan: 'Grill, Japannesse',
+        jenisTempat: 'Restaurant',
+        rating: '5.0',
+        booked: 1000,
+        points: [
+          {
+            time: '09:00-12:00',
+            discount: 50
+          },
+          {
+            time: '12:00-16:30',
+            discount: 10
+          },
+          {
+            time: '16:30-22:00',
+            discount: 25
+          }
+        ]
+      },
+      {
+        name: 'Hanamasa',
+        image: 'https://i.ytimg.com/vi/_kaAjarpYGw/maxresdefault.jpg',
+        location: 'Setiabudi',
+        locationKabupaten: 'Jakarta Selatan',
+        masakan: 'Grill, Japannesse',
+        jenisTempat: 'Work',
+        rating: '4.5',
+        booked: 1001,
+        points: [
+          {
+            time: '09:00-12:00',
+            discount: 20
+          },
+          {
+            time: '12:00-16:30',
+            discount: 30
+          },
+          {
+            time: '16:30-22:00',
+            discount: 50
+          }
+        ]
+      },
+    ],
     populerPlace: [
       {
         name: 'Lapangan Futsal Patoenk',
@@ -59,43 +107,7 @@ class HomePageSrc extends React.Component {
           }
         ]
       },
-    ],
-    accessToken: null,
-    foodUpdate: []
-  }
-
-  componentDidMount = () => {
-    getAsyncStoreLoad('accessToken', this.getAccessToken);
-  }
-
-  getAccessToken = (accessToken) => {
-    this.setState({ accessToken }, () => { this.getFoodUpdate(accessToken) })
-  }
-
-  getFoodUpdate = (accessToken) => {
-    const api = endPoint.search;
-    const header = {
-      headers: {
-        'Authorization': accessToken,
-        'Content-Type': 'application/json'
-      },
-      params: {
-        'page': 1,
-        'class': 'provinsi',
-        'idx': 11,
-        'per_page': 10,
-        'query': 'coffee',
-      }
-    }
-    apiCall.get(api, header, this.responeFoodUpdate)
-  }
-
-  responeFoodUpdate = (callback) => {
-    console.log('callback', callback);
-    if (callback != null && callback.data.status == true) {
-      let foodUpdate = callback.data.data
-      this.setState({ foodUpdate })
-    }
+    ]
   }
 
   _actionDetail = () => {
@@ -107,15 +119,6 @@ class HomePageSrc extends React.Component {
   }
 
   _actionBookNow = () => {
-    this.refs.defaultToastBottom.ShowToastFunction('action book now');
-  }
-
-  _actionDetailFood = (data) => {
-    console.log('data', data);
-    this.props.navigation.navigate('FoodDetail', { data: data._source.slug })
-  }
-
-  _actionBookNowFood = () => {
     this.refs.defaultToastBottom.ShowToastFunction('action book now');
   }
 
@@ -136,12 +139,12 @@ class HomePageSrc extends React.Component {
               </View>
               <View horizontalRow horizontal={true} style={{ paddingLeft: 15 }}>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true}>
-                  {this.state.foodUpdate.map((data, i) => {
+                  {this.state.dealsOfTheDay.map((data, i) => {
                     return <Food
                       key={i}
                       item={data}
-                      _actionDetail={this._actionDetailFood}
-                      _actionBookNow={this._actionBookNowFood}
+                      _actionDetail={this._actionDetail}
+                      _actionBookNow={this._actionBookNow}
                     />
                   })}
                 </ScrollView>
